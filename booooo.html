@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiaT Co. - Party & Ceremony Organizer</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #00bcd4, #4caf50); /* Blue to Green Gradient */
+            background-size: 100% 100%;
+            color: #fff; /* White Text */
+            overflow: hidden; /* Prevent scrolling on small screens */
+        }
+
+        header {
+            background-color: #004d40; /* Dark Green Header */
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+        }
+
+        section {
+            padding: 50px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.5;
+            color: #333; /* Dark Gray Text */
+            display: inline-block; /* Make each letter inline-block for individual styling */
+        }
+
+        img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px; /* Adds rounded corners to images */
+            margin-top: 20px;
+            transition: transform 0.3s ease-in-out; /* Add smooth transition for zoom effect */
+        }
+
+        img:hover {
+            transform: scale(1.1); /* Zoom in on hover */
+        }
+
+        footer {
+            background-color: #004d40; /* Dark Green Footer */
+            color: #ffffff; /* White Text */
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Bubble Animation Styles */
+        .bubble {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: bubbleAnimation 1s ease-out;
+        }
+
+        @keyframes bubbleAnimation {
+            to {
+                transform: translate(0, -100vh);
+                opacity: 0;
+            }
+        }
+
+        /* Form Styles */
+        .form-container {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .form-button {
+            padding: 10px;
+            background-color: #004d40; /* Dark Green Button Color */
+            color: #fff; /* White Text */
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Styled Prompt */
+        .styled-prompt {
+            background: #004d40; /* Dark Green Background */
+            color: #fff; /* White Text */
+            padding: 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .prompt-input {
+            margin: 10px;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .prompt-button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #004d40; /* Dark Green Button Color */
+            color: #fff; /* White Text */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to SiaT Co.</h1>
+        <p>Your Passport to Unforgettable Celebrations!</p>
+    </header>
+
+    <section>
+        <h2>Contact Us</h2>
+        <p>Ready to turn your dreams into reality? Reach out to us at: +256771690328</p>
+        <img src="https://i.imgur.com/your-image.jpg" alt="Party Image">
+    </section>
+
+    <footer>
+        <p>&copy; 2024 SiaT Co. All rights reserved. Let's create memories together!</p>
+    </footer>
+
+    <div class="form-container">
+        <button class="form-button" onclick="showStyledPrompt()">Ready</button>
+    </div>
+
+    <!-- JavaScript for Bubble and Text Zoom Animation -->
+    <script>
+        document.addEventListener('click', function (e) {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.style.left = e.clientX + 'px';
+            bubble.style.top = e.clientY + 'px';
+            document.body.appendChild(bubble);
+
+            // Remove bubble after animation
+            bubble.addEventListener('animationend', function () {
+                document.body.removeChild(bubble);
+            });
+
+            const textElements = document.querySelectorAll('p, h1, h2');
+            textElements.forEach(element => {
+                const letters = element.innerText.split('');
+                const zoomedLetters = letters.map(letter => `<span style="display: inline-block; transform: scale(1.2);">${letter}</span>`);
+                element.innerHTML = zoomedLetters.join('');
+            });
+        });
+
+        // Function to show the styled prompt
+        function showStyledPrompt() {
+            const name = prompt('Enter your name:');
+            const address = prompt('Enter your address:');
+            const celebrationType = prompt('Enter the celebration type:');
+            const budget = prompt('Enter your budget:');
+
+            const styledPrompt = document.createElement('div');
+            styledPrompt.className = 'styled-prompt';
+
+            styledPrompt.innerHTML = `
+                <p>Thank you for providing your information:</p>
+                <p>Name: ${name}</p>
+                <p>Address: ${address}</p>
+                <p>Celebration Type: ${celebrationType}</p>
+                <p>Budget: ${budget}</p>
+                <button class="prompt-button" onclick="closeStyledPrompt()">Send</button>
+            `;
+
+            document.body.appendChild(styledPrompt);
+        }
+
+        // Function to close the styled prompt
+        function closeStyledPrompt() {
+            const styledPrompt = document.querySelector('.styled-prompt');
+            if (styledPrompt) {
+                document.body.removeChild(styledPrompt);
+            }
+        }
+    </script>
+
+</body>
+</html>
